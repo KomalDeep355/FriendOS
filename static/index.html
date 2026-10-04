@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FriendOS — Your day, made lighter</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <div class="background-shape shape-one"></div>
+    <div class="background-shape shape-two"></div>
+    <div class="background-shape shape-three"></div>
+
+    <main class="page">
+
+        <nav class="navbar">
+
+            <div class="brand">
+                <div class="brand-mark">F</div>
+
+                <span>FriendOS</span>
+            </div>
+
+            <div class="nav-note">
+                <span class="tiny-sparkle">✦</span>
+                your little thinking partner
+            </div>
+
+        </nav>
+
+
+        <section class="hero">
+
+            <div class="eyebrow">
+                <span>☁️</span>
+                A calmer way to figure out what's next
+            </div>
+
+            <h1>
+                What should I
+                <span>do next?</span>
+            </h1>
+
+            <p class="hero-text">
+                Dump everything that's on your mind.
+                FriendOS will turn the mess into a gentle,
+                practical plan.
+            </p>
+
+        </section>
+
+
+        <section class="input-board">
+
+            <div class="board-tape"></div>
+
+            <div class="input-header">
+
+                <div>
+                    <span class="small-label">YOUR BRAIN DUMP</span>
+
+                    <h2>
+                        What's on your mind?
+                    </h2>
+                </div>
+
+                <div class="board-icon">
+                    ✎
+                </div>
+
+            </div>
+
+
+            <div class="input-wrapper">
+
+                <textarea
+                    id="notes"
+                    placeholder="Tell me everything...
+
+Assignment due tomorrow...
+Need to reply to my professor...
+Book a train...
+Buy a charger...
+Study for my exam...
+
+Don't worry about organizing it. That's my job. ☁️"
+                ></textarea>
+
+                <div class="input-tools">
+
+                    <select
+                        id="languageSelect"
+                        aria-label="Response language"
+                    >
+                        <option value="English">English</option>
+                        <option value="Hindi">Hindi</option>
+                        <option value="Punjabi">Punjabi</option>
+                        <option value="Hinglish">Hinglish</option>
+                    </select>
+
+                    <button
+                        id="voiceRecordBtn"
+                        class="mic-btn"
+                        type="button"
+                        aria-label="Speak"
+                        title="Speak"
+                    >
+                        <span id="micIcon">🎙️</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="voiceStatus"
+                class="voice-status"
+            >
+                Type normally or tap the microphone to speak.
+            </div>
+
+            <div
+                id="voiceTranscript"
+                class="voice-transcript hidden"
+            ></div>
+
+
+            <div class="input-footer">
+
+                <p>
+                    <span>✦</span>
+                    No need to make it neat.
+                </p>
+
+                <button id="organizeBtn">
+
+                    <span>Organize my life</span>
+
+                    <span class="button-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+
+            <p id="loading" class="loading hidden">
+                <span class="loading-dot"></span>
+                FriendOS is figuring out what matters first...
+            </p>
+
+            <p id="error" class="error hidden"></p>
+
+        </section>
+
+
+        <section id="results" class="results hidden">
+
+            <div class="results-intro">
+
+                <div>
+                    <span class="small-label">
+                        YOUR LITTLE PLAN
+                    </span>
+
+                    <h2>
+                        Here's what I'd do
+                        <em>if I were you.</em>
+                    </h2>
+                </div>
+
+                <div class="cloud-decoration">
+                    ☁️
+                </div>
+
+            </div>
+
+
+            <div class="task-board">
+
+
+                <article class="task-card card-pink">
+
+                    <div class="card-top">
+
+                        <div class="card-label">
+                            <span>🔥</span>
+                            DO NOW
+                        </div>
+
+                        <span class="card-number">
+                            01
+                        </span>
+
+                    </div>
+
+                    <p class="card-description">
+                        The things that deserve your attention first.
+                    </p>
+
+                    <div id="doNow" class="task-list"></div>
+
+                </article>
+
+
+                <article class="task-card card-yellow">
+
+                    <div class="card-top">
+
+                        <div class="card-label">
+                            <span>🌼</span>
+                            DO SOON
+                        </div>
+
+                        <span class="card-number">
+                            02
+                        </span>
+
+                    </div>
+
+                    <p class="card-description">
+                        Important, but they don't need you right this second.
+                    </p>
+
+                    <div id="doSoon" class="task-list"></div>
+
+                </article>
+
+
+                <article class="task-card card-green">
+
+                    <div class="card-top">
+
+                        <div class="card-label">
+                            <span>🌿</span>
+                            CAN WAIT
+                        </div>
+
+                        <span class="card-number">
+                            03
+                        </span>
+
+                    </div>
+
+                    <p class="card-description">
+                        Things you can safely take off your mental desk.
+                    </p>
+
+                    <div id="canWait" class="task-list"></div>
+
+                </article>
+
+
+                <article class="task-card next-card">
+
+                    <div class="card-top">
+
+                        <div class="card-label">
+                            <span>⏱</span>
+                            NEXT 30 MINUTES
+                        </div>
+
+                        <span class="card-number">
+                            ✦
+                        </span>
+
+                    </div>
+
+                    <p class="card-description">
+                        Don't think about the whole day. Just start here.
+                    </p>
+
+                    <div id="next30" class="next-list"></div>
+
+                    <button id="startNextBtn" class="start-button">
+                        Start the next thing
+                        <span>→</span>
+                    </button>
+
+                </article>
+
+
+                <article class="thought-card">
+
+                    <div class="thought-icon">
+                        ☁️
+                    </div>
+
+                    <div>
+
+                        <span class="small-label">
+                            FRIENDOS SAYS
+                        </span>
+
+                        <p id="summary">
+                            You don't have to do everything today.
+                            Let's just figure out what matters first.
+                        </p>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <section id="actionPanel" class="action-panel hidden">
+
+                <button
+                    id="closeAction"
+                    class="close-action"
+                    aria-label="Close"
+                >
+                    ×
+                </button>
+
+                <div class="action-icon" id="actionIcon">
+                    ✦
+                </div>
+
+                <span class="small-label" id="actionLabel">
+                    LET'S DO THIS
+                </span>
+
+                <h3 id="actionTitle">
+                    Your next task
+                </h3>
+
+                <p id="actionDescription">
+                    Let's make this one easy.
+                </p>
+
+                <div id="actionContent" class="action-content"></div>
+
+                <div class="action-buttons">
+
+                    <button
+                        id="actionPrimary"
+                        class="action-primary"
+                    >
+                        Start task →
+                    </button>
+
+                    <button
+                        id="actionSecondary"
+                        class="action-secondary"
+                    >
+                        Copy
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <div class="reset-area">
+
+                <button id="resetBtn" class="reset-button">
+                    ← Start with a new brain dump
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            <div class="footer-line"></div>
+
+            <p>
+                Made for people who have too many tabs open
+                <span>♡</span>
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <script src="/static/app.js"></script>
+
+</body>
+</html>
